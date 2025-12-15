@@ -15,7 +15,7 @@ export default function Form() {
     setResponse(null);
 
     try {
-      const res = await fetch"https://my-backend.onrender.com/api/submit", {
+      const res = await fetch("https://my-backend.onrender.com/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
