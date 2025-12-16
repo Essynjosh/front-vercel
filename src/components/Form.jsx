@@ -14,12 +14,17 @@ export default function Form() {
     setError(null);
     setResponse(null);
 
-    try {
-      const res = await fetch("https://my-backend.onrender.com/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
+   try {
+      const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/api/submit`;
+
+      const res = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
 
       const data = await res.json();
 
