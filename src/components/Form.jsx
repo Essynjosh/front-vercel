@@ -8,37 +8,38 @@ export default function Form() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    setResponse(null);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError(null);
+  setResponse(null);
 
-   try {
-      const API_URL = import.meta.env.VITE_BACKEND_URL;
+  try {
+    const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-const response = await fetch(`${API_URL}/api/submit`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ name, email, message }),
-});
+    const response = await fetch(`${API_URL}/api/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message }),
+    });
 
+    const data = await response.json();
 
-
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || "Something went wrong");
-
-      setResponse(data);
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(data.error || "Something went wrong");
     }
-  };
+
+    setResponse(data);
+    setName("");
+    setEmail("");
+    setMessage("");
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div style={{ maxWidth: 500, margin: "2rem auto", padding: "1rem", border: "1px solid #ccc", borderRadius: 8 }}>
