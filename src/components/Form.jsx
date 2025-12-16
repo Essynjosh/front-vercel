@@ -15,15 +15,14 @@ export default function Form() {
     setResponse(null);
 
    try {
-      const API_ENDPOINT = `${process.env.REACT_APP_API_URL}/api/submit`;
+      const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-      const res = await fetch(API_ENDPOINT, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json" 
-        },
-        body: JSON.stringify({ name, email, message }),
-      });
+const response = await fetch(`${API_URL}/api/submit`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ name, email, message }),
+});
+
 
 
       const data = await res.json();
