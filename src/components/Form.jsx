@@ -20,7 +20,7 @@ export default function Form() {
       const res = await fetch(`${API_URL}/api/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+      
       });
 
       const data = await res.json();
