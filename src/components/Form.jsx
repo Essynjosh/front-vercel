@@ -17,16 +17,15 @@ const handleSubmit = async (e) => {
   try {
     const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-    const response = await fetch(`${API_URL}/api/submit`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message }),
-    });
+  const res = await fetch(`${API_URL}/api/submit`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ name, email, message }),
+});
 
-    const data = await response.json();
+const data = await res.json();
 
-    if (!response.ok) {
-      throw new Error(data.error || "Something went wrong");
+if (!res.ok) throw new Error(data.error || "Something went wrong");
     }
 
     setResponse(data);
