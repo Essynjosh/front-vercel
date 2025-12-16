@@ -36,7 +36,7 @@ if (!res.ok) throw new Error(data.error || "Something went wrong");
     setError(err.message);
   } finally {
     setLoading(false);
-  }
+  };
 };
 
 
