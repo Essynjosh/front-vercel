@@ -50,3 +50,60 @@ export default function Form() {
   return (
     <div
       style={{
+        maxWidth: 500,
+        margin: "2rem auto",
+        padding: "1rem",
+        border: "1px solid #ccc",
+        borderRadius: 8,
+      }}
+    >
+      <h2>Submit Form</h2>
+
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            style={{ width: "100%", padding: 8, margin: "0.5rem 0" }}
+          />
+        </label>
+
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ width: "100%", padding: 8, margin: "0.5rem 0" }}
+          />
+        </label>
+
+        <label>
+          Message:
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            style={{ width: "100%", padding: 8, margin: "0.5rem 0" }}
+          />
+        </label>
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Submitting..." : "Submit"}
+        </button>
+      </form>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {response && (
+        <div style={{ marginTop: "1rem", color: "green" }}>
+          <strong>Success!</strong>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
