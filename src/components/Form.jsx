@@ -10,7 +10,6 @@ export default function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
     setError(null);
     setResponse(null);
@@ -20,14 +19,8 @@ export default function Form() {
 
       const res = await fetch(`${API_URL}/api/submit`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
       });
 
       const data = await res.json();
@@ -48,15 +41,7 @@ export default function Form() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: 500,
-        margin: "2rem auto",
-        padding: "1rem",
-        border: "1px solid #ccc",
-        borderRadius: 8,
-      }}
-    >
+    <div style={{ maxWidth: 500, margin: "2rem auto", padding: "1rem", border: "1px solid #ccc", borderRadius: 8 }}>
       <h2>Submit Form</h2>
 
       <form onSubmit={handleSubmit}>
@@ -91,7 +76,7 @@ export default function Form() {
           />
         </label>
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} style={{ padding: "0.5rem 1rem" }}>
           {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
@@ -99,7 +84,7 @@ export default function Form() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {response && (
-        <div style={{ marginTop: "1rem", color: "green" }}>
+        <div style={{ marginTop: "1rem", padding: "1rem", border: "1px solid green", borderRadius: 8 }}>
           <strong>Success!</strong>
           <pre>{JSON.stringify(response, null, 2)}</pre>
         </div>
