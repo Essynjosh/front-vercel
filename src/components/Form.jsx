@@ -17,7 +17,7 @@ export default function Form() {
     try {
       const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-      const res = await fetch(`${API_URL}/api/submit`, {
+      const res = await fetch (`${API_URL}/api/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
